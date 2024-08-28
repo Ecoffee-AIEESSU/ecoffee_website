@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='pointstore.css') }}">
+    <title>Point Store</title>
+</head>
+<body>
+
+    <!-- 상단 네비게이션 바 -->
+    <nav class="navigation">
+        <!-- 왼쪽 상단에 ECOFFEE 텍스트 -->
+        <div>ECOFFEE</div>
+        
+        <!-- 홈 버튼, 마이페이지 버튼, 로그아웃 버튼을 묶는 컨테이너 -->
+        <div class="nav-buttons">
+            <form action="/index" method="get" style="display: inline;">
+                <button type="submit" class="nav-btn">홈</button>
+            </form>
+            <form action="/mypage" method="get" style="display: inline;">
+                <button type="submit" class="nav-btn">마이페이지</button>
+            </form>
+            <form action="/logout" method="get" style="display: inline;">
+                <button type="submit" class="nav-btn">로그아웃</button>
+            </form>
+        </div>
+    </nav>
+
+    <!-- 메인 컨텐츠 영역 -->
+    <div class="wrapper">
+        <div class="contents">
+            <h1>포인트 상점</h1>
+            <p>아래에서 기프티콘을 선택하세요</p>
+            
+            <!-- 커피 기프티콘 리스트, 스크롤 가능하도록 설정 -->
+            <div class="coffee-list">
+                <!-- 커피 항목 반복 -->
+                {% for coffee in coffees %}
+                <div class="coffee-item">
+                    <img src="{{ url_for('static', filename=coffee.image_url) }}" alt="{{ coffee.name }}" class="coffee-image">
+                    <h3>{{ coffee.name }}</h3>
+                    <p>필요 포인트: {{ coffee.point_cost }} 포인트</p>
+                    <form action="/buycoffee" method="post">
+                        <input type="hidden" name="coffee_id" value="{{ coffee.id }}">
+                        <button type="submit" class="buy-btn">구매하기</button>
+                    </form>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        {% if message %}
+        alert("{{ message }}");
+        {% endif %}
+    </script>
+
+</body>
+</html>

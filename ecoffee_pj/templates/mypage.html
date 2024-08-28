@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='mypage.css') }}">
+    <title>My page</title>
+</head>
+<body>
+
+    <!-- 상단 네비게이션 바 -->
+    <nav class="navigation">
+        <!-- 왼쪽 상단 ECOFFEE 텍스트 -->
+        <div>ECOFFEE</div>
+        
+        <!-- 홈 버튼, 포인트 상점 버튼, 로그아웃 버튼을 묶는 컨테이너 -->
+        <div class="nav-buttons">
+            <form action="/index" method="get" style="display: inline;">
+                <button type="submit" class="nav-btn">홈</button>
+            </form>
+            <form action="/pointstore" method="get" style="display: inline;">
+                <button type="submit" class="nav-btn">포인트 상점</button>
+            </form>
+            <form action="/logout" method="get" style="display: inline;">
+                <button type="submit" class="nav-btn">로그아웃</button>
+            </form>
+        </div>
+    </nav>
+
+    <!-- 메인 컨텐츠 영역 -->
+    <div class="wrapper">
+        <div class="contents" style="text-align: center;"> <!-- 중앙 정렬을 위한 스타일 추가 -->
+            <div class="points">
+                <h2>보유 포인트: {{ current_points }} 포인트</h2>
+            </div>
+
+            <div class="profile-picture" style="display: flex; justify-content: center;">
+                <img src="{{ url_for('static', filename='uploads/myuser.jpg') }}" alt="Profile Picture">
+            </div>
+
+            <form method="POST" enctype="multipart/form-data">
+                <label class="upload-button">
+                    사진 변경
+                    <input type="file" name="profile_picture" onchange="this.form.submit()">
+                </label>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

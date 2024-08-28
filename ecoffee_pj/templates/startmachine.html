@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='startmachine.css') }}">
+    <title>기계 동작</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="contents">
+            <h2>선택 후 기계는 동작하고 메인 화면으로 돌아갑니다.</h2>
+            <p>1. logo O(+20포인트)</p>
+            <p>2. logo X(+60포인트)</p>
+            <div class="buttons">
+                <form action="/updatemachine" method="post">
+                    <input type="hidden" name="point_increase" value="20">
+                    <button type="submit" class="option-btn">1번 선택</button>
+                </form>
+                <form action="/updatemachine" method="post">
+                    <input type="hidden" name="point_increase" value="60">
+                    <button type="submit" class="option-btn">2번 선택</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

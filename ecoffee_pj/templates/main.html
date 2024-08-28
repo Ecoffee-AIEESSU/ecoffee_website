@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static',filename='main.css') }}"
+    />
+    <title>Main Page</title>
+  </head>
+  <body>
+
+    <nav class="navigation">
+      <div>ECOFFEE</div>
+      <div class="nav-buttons">
+        <form action="/mypage" method="post" style="display: inline;">
+          <button type="submit" class="nav-btn">마이페이지</button>
+        </form>
+        <form action="/pointstore" method="post" style="display: inline;">
+          <button type="submit" class="nav-btn">포인트 상점</button>
+        </form>
+        <form action="/logout" method="get" style="display: inline;">
+          <button type="submit" class="nav-btn">로그아웃</button>
+        </form>
+      </div>
+    </nav>
+
+    <div class="wrapper">
+      <div class="contents">
+        <div class="balance">
+          <h2>현재 포인트: {{ current_points }} 포인트</h2>
+        </div>
+
+        <div class="actions">
+          <form action="/startmachine" method="post">
+            <button type="submit" class="action-btn">ecoffee 기계 동작 시작</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      {% if message %}
+        alert("{{ message }}");
+      {% endif %}
+    </script>
+  </body>
+</html>
