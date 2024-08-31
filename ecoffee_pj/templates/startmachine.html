@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='startmachine.css') }}">
+    <title>기계 동작</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="contents">
+            <h2>선택 후 기계는 동작하고 메인 화면으로 돌아갑니다.</h2>
+            <form action="/updatemachine" method="post">
+                <div>
+                    <label>로고:</label>
+                    <select name="logo" id="logoSelect" onchange="toggleCupSize()">
+                        <option value="O">logo O(+4포인트)</option>
+                        <option value="X">logo X</option>
+                    </select>
+                </div>
+                <div id="cupSizeDiv">
+                    <label>컵 크기:</label>
+                    <select name="cup_size">
+                        <option value="L">Lsize(+10포인트)</option>
+                        <option value="M">Msize(+8포인트)</option>
+                    </select>
+                </div>
+                <div class="buttons">
+                    <button type="submit" class="option-btn">선택 완료</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleCupSize() {
+            var logoSelect = document.getElementById("logoSelect");
+            var cupSizeDiv = document.getElementById("cupSizeDiv");
+
+            if (logoSelect.value === "O") {
+                cupSizeDiv.style.display = "none";  // 로고가 있을 때 컵 크기 선택 숨기기
+            } else {
+                cupSizeDiv.style.display = "block";  // 로고가 없을 때 컵 크기 선택 보이기
+            }
+        }
+
+        // 페이지 로드 시 초기 설정
+        toggleCupSize();
+    </script>
+</body>
+</html>
