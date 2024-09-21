@@ -1,4 +1,6 @@
 import sys
+import flask_sqlalchemy
+import pymysql
 from sqlalchemy import Column, ForeignKey, Integer, String, DateTime
 from sqlalchemy.orm import relationship, declarative_base
 from sqlalchemy import create_engine
@@ -49,5 +51,5 @@ class Purchase(Base):
     purchase_date = Column(DateTime, default=datetime.utcnow)
 
 # 데이터베이스 설정
-engine = create_engine('mysql+pymysql://root:1108@localhost/ecoffee_db')
+engine = create_engine('mysql+pymysql://root:StrongPassword123@localhost/ecoffee_db')
 Base.metadata.create_all(engine)

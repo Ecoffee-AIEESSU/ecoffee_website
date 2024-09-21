@@ -1,5 +1,7 @@
 import os
 import json
+import flask_sqlalchemy
+import pymysql
 from flask import Flask, render_template, request, redirect, url_for, session as flask_session, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy.orm import sessionmaker
@@ -12,7 +14,7 @@ app = Flask(__name__)
 UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static/uploads')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-engine = create_engine('mysql+pymysql://root:1108@localhost/ecoffee_db')
+engine = create_engine('mysql+pymysql://root:StrongPassword123@localhost/ecoffee_db')
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 db_session = DBSession()
